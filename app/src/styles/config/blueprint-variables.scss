@@ -1,0 +1,16 @@
+@import "global-variables";
+@import "~@blueprintjs/core/lib/scss/variables";
+
+$icon-font-path: '~@blueprintjs/icons/resources/icons';
+
+$pt-intent-primary: $primary;
+$pt-intent-success: $success;
+$pt-intent-warning: $warning;
+$pt-intent-danger: $danger;
+
+$button-intents: (
+    "primary": ($pt-intent-primary, $green-light, $green-lightest),
+    "success": ($pt-intent-success, $green2, $green1),
+    "warning": ($pt-intent-warning, $orange2, $orange1),
+    "danger": ($pt-intent-danger, $red2, $red1)
+);
