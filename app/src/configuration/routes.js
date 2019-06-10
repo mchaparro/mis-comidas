@@ -1,18 +1,21 @@
+import React from 'react';
 import loadable from '@loadable/component';
 import '@tg-resources/fetch-runtime';
 import { buildUrlCache, resolvePath } from 'tg-named-routes';
+import { ConnectedRedirect } from '@thorgate/spa-pending-data';
 
 import App from 'containers/AppShell';
 import PageNotFound from 'views/PageNotFound';
 
 import permissionCheck from 'sagas/auth/permissionCheckSaga';
+import { fetchForumsInitialWorker, fetchForumWatcher } from 'sagas/forums/fetchForums';
 import activateLanguage from 'sagas/user/activateLanguage';
 import fetchUserDetails from 'sagas/user/fetchUserDetails';
 
 import { createAuthenticationRoutes } from './routes/authentication';
 
-
-const Home = loadable(() => import('views/Home'));
+// const Home = loadable(() => import('views/Home'));
+const ForumsView = loadable(() => import('views/ForumsView'));
 const RestrictedView = loadable(() => import('views/RestrictedView'));
 
 
@@ -36,7 +39,7 @@ const routes = [
                 path: '/',
                 exact: true,
                 name: 'landing',
-                component: Home,
+                component: () => (<ConnectedRedirect to={resolvePath('forums')} />),
             },
             {
                 path: '/restricted',
@@ -44,6 +47,14 @@ const routes = [
                 name: 'restricted',
                 component: RestrictedView,
                 initial: permissionCheck,
+            },
+            {
+                path: '/forums',
+                exact: true,
+                name: 'forums',
+                component: ForumsView,
+                initial: fetchForumsInitialWorker,
+                watcher: fetchForumWatcher,
             },
             createAuthenticationRoutes(NotFoundRoute),
             NotFoundRoute,

@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     # Local apps
     'accounts',
     'ask_taltech_student',
+    'forums',
+    'threads',
 
     # Third-party apps
     'rest_framework',

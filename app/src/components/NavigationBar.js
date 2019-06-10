@@ -49,11 +49,11 @@ const NavigationBar = ({ user, isLoggedIn }) => {
     }
 
     return (
-        <Navbar color="faded" light expand="md">
-            <NavbarBrand tag={Link} to={urlResolve('landing')}>HOME</NavbarBrand>
+        <Navbar color="navbar-default" light expand="md">
+            <NavbarBrand tag={Link} to={urlResolve('forums')}>Ask a TalTech Student</NavbarBrand>
             <Nav navbar>
                 <NavItem>
-                    <NavLink tag={Link} to={urlResolve('restricted')}>{gettext('Restricted view')}</NavLink>
+                    <NavLink tag={Link} to={urlResolve('forums')}>{gettext('Forums')}</NavLink>
                 </NavItem>
                 {devUrls}
             </Nav>

@@ -60,6 +60,13 @@ module.exports = {
         // adding ./src to module resolver so I can import modules with absolute paths
         config.resolve.modules.push('./src');
 
+        if (target === 'node') {
+            config.externals = [
+                '@blueprintjs/icons',
+                ...config.externals,
+            ];
+        }
+
         return config;
     },
 };

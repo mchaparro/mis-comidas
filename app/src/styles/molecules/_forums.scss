@@ -1,0 +1,20 @@
+.forum {
+    border: 2px solid $gray-900;
+    padding: 2rem;
+
+    &:not(:last-child) {
+        border-bottom: none;
+    }
+
+    &__description {
+        display: flex;
+        padding: 0.5rem 0.75rem;
+        background-color: $white;
+        z-index: 1;
+    }
+
+    &__title {
+        font-weight: bold;
+        margin-right: auto;
+    }
+}

@@ -6,7 +6,7 @@ import { call } from 'redux-saga/effects';
 
 import SETTINGS from 'settings';
 import { refreshToken } from 'sagas/auth/authMiddleware';
-import { getToken, saveToken } from 'sagas/helpers/token';
+import { getToken } from 'sagas/helpers/token';
 
 import Sentry from './sentry';
 
@@ -63,6 +63,9 @@ const api = createSagaRouter({
         signup: 'user/signup',
         forgotPassword: 'user/forgot_password',
         forgotPasswordToken: 'user/forgot_password/token',
+    },
+    forum: {
+        list: 'forums',
     },
 }, {
     apiRoot: SETTINGS.BACKEND_SITE_URL + SETTINGS.API_BASE,
