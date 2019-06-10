@@ -1,0 +1,95 @@
+# Docker-compose configuration for production
+
+version: '2'
+
+services:
+    django:
+        build:
+            context: .
+            dockerfile: Dockerfile-django.production
+        container_name: ask_taltech_student_django
+        restart: unless-stopped
+        volumes:
+            - "/var/lib/docker-nginx/files/ask_taltech_student/assets:/files/assets"
+            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+        # For some reason the command also has to be specified here, otherwise the entrypoint+command combination won't
+        #  work.
+        entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
+        command: gunicorn ask_taltech_student.wsgi:application --workers 2 --bind :80
+        networks:
+            - default
+            - ask_taltech_student_nginx
+            - ask_taltech_student_postgres
+        depends_on:
+            - redis
+        external_links:
+            - postgres-10:postgres
+
+    node:
+        build:
+            context: .
+            dockerfile: Dockerfile-node.production
+        container_name: ask_taltech_student_node
+        restart: unless-stopped
+        command: yarn start
+        volumes:
+            - "/var/lib/docker-nginx/files/ask_taltech_student/app/assets:/files/assets"
+            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+        networks:
+            - default
+            - ask_taltech_student_nginx
+
+    celery:
+        build:
+            context: .
+            dockerfile: Dockerfile-django.production
+        restart: unless-stopped
+        volumes:
+            - "/var/lib/docker-nginx/files/ask_taltech_student/media:/files/media"
+            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+        networks:
+            - default
+            - ask_taltech_student_postgres
+        depends_on:
+            - redis
+        external_links:
+            - postgres-10:postgres
+        entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
+        command: celery worker --app ask_taltech_student --autoscale 6,2 --loglevel INFO
+
+    celery_beat:
+        build:
+            context: .
+            dockerfile: Dockerfile-django.production
+        container_name: ask_taltech_student_celery_beat
+        restart: unless-stopped
+        volumes:
+            - "/var/lib/docker-ask_taltech_student/celery:/celery"
+            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+        networks:
+            - default
+        depends_on:
+            - redis
+        # Disable pidfile by specifying an empty one. We used fixed container_name which provides single-running-process
+        #  guarantee and the lack of pidfile ensures that Celery Beat starts even if the Docker container was killed and
+        #  then restarted (in which case the pidfile would still be present).
+        command: celery beat --app ask_taltech_student --loglevel INFO --logfile /var/log/ask_taltech_student/celery-beat.log --pidfile= --schedule /celery/celerybeat-schedule
+
+    redis:
+        image: redis:4.0.10-alpine
+        restart: unless-stopped
+        volumes:
+            - "/var/lib/docker-ask_taltech_student/redis:/data"
+        networks:
+            - default
+
+# NB: These networks must be created by fabfile and contain the global nginx/postgres containers.
+# Keep it in sync with fabfile!
+networks:
+    default:
+        external:
+            name: ask_taltech_student_default
+    ask_taltech_student_nginx:
+        external: true
+    ask_taltech_student_postgres:
+        external: true

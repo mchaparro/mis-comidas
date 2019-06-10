@@ -1,0 +1,16 @@
+.idea
+
+app/node_modules/
+venv/
+
+.data/
+
+**/__pycache__
+*.pyo
+*.pyc
+
+ask_taltech_student/.cache
+ask_taltech_student/.pytest_cache
+ask_taltech_student/.coverage
+ask_taltech_student/coverage
+ask_taltech_student/cover/

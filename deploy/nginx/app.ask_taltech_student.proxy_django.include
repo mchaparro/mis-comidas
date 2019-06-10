@@ -1,0 +1,2 @@
+include conf.d/app.ask_taltech_student.proxy.include;
+proxy_pass http://ask_taltech_student_django;
