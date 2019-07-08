@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { selectForums } from 'ducks/forums';
 import { ForumShape } from 'utils/types/forums';
-import Recipe from 'components/Recipes/Recipe';
+import Recipe from 'components/recipes/Recipe';
 
 const Recipes = ({ forums }) => (
     <div>

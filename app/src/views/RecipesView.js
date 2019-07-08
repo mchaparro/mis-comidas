@@ -1,7 +1,8 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { gettext } from 'utils/i18n';
-// import Recipes from 'components/Recipes/Recipes';
+import RecipeForm from 'forms/recipes/Recipe';
+// import recipes from 'components/recipes/recipes';
 // import PropTypes from 'prop-types';
 
 const RecipesView = () => (
@@ -15,7 +16,7 @@ const RecipesView = () => (
         </Row>
         <Row className="mt-3">
             <Col>
-                Hello
+                <RecipeForm />
             </Col>
         </Row>
     </Container>
