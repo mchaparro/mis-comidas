@@ -4,7 +4,7 @@ from settings.local import *
 SEND_EMAILS = False
 
 DATABASES['default']['TEST'] = {
-    'NAME': 'ask_taltech_student_test',
+    'NAME': 'mis_comidas_test',
 }
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

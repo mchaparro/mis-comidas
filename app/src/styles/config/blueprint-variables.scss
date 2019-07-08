@@ -9,7 +9,7 @@ $pt-intent-warning: $warning;
 $pt-intent-danger: $danger;
 
 $button-intents: (
-    "primary": ($pt-intent-primary, $green-light, $green-lightest),
+    "primary": ($pt-intent-primary, $green2, $green5),
     "success": ($pt-intent-success, $green2, $green1),
     "warning": ($pt-intent-warning, $orange2, $orange1),
     "danger": ($pt-intent-danger, $red2, $red1)

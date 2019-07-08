@@ -41,13 +41,13 @@ if env.str('DJANGO_DISABLE_FILE_LOGGING', default='n') != 'y':
         'info_log': {
             'level': 'INFO',
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/var/log/ask_taltech_student/info.log',
+            'filename': '/var/log/mis_comidas/info.log',
             'formatter': 'default',
         },
         'error_log': {
             'level': 'ERROR',
             'class': 'logging.handlers.WatchedFileHandler',
-            'filename': '/var/log/ask_taltech_student/error.log',
+            'filename': '/var/log/mis_comidas/error.log',
             'formatter': 'default',
         },
     })
@@ -74,8 +74,8 @@ CSRF_TRUSTED_ORIGINS = env.list('DJANGO_CSRF_TRUSTED_ORIGINS', default=ALLOWED_H
 
 
 # Enable S3 storage
-DEFAULT_FILE_STORAGE = 'ask_taltech_student.storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'mis_comidas.storages.MediaStorage'
 MEDIA_ROOT = env.str('DJANGO_MEDIA_ROOT', default='')
-AWS_STORAGE_BUCKET_NAME = env.str('DJANGO_AWS_STORAGE_BUCKET_NAME', default='ask_taltech_student-staging')
+AWS_STORAGE_BUCKET_NAME = env.str('DJANGO_AWS_STORAGE_BUCKET_NAME', default='mis_comidas-staging')
 AWS_ACCESS_KEY_ID = env.str('DJANGO_AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env.str('DJANGO_AWS_SECRET_ACCESS_KEY')

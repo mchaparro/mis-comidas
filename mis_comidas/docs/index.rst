@@ -1,7 +1,7 @@
-.. ask_taltech_student documentation master file
+.. mis_comidas documentation master file
    Should always contain the `toctree` directive.
 
-Welcome to ask_taltech_student's documentation!
+Welcome to mis_comidas's documentation!
 ===============================================
 
 .. toctree::

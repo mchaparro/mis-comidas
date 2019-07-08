@@ -26,8 +26,8 @@ CORS_ORIGIN_WHITELIST = [
 CSRF_TRUSTED_ORIGINS = env.list('DJANGO_CSRF_TRUSTED_ORIGINS', default=ALLOWED_HOSTS)
 
 # Enable S3 storage
-DEFAULT_FILE_STORAGE = 'ask_taltech_student.storages.MediaStorage'
+DEFAULT_FILE_STORAGE = 'mis_comidas.storages.MediaStorage'
 MEDIA_ROOT = env.str('DJANGO_MEDIA_ROOT', default='')
-AWS_STORAGE_BUCKET_NAME = env.str('DJANGO_AWS_STORAGE_BUCKET_NAME', default='ask_taltech_student-production')
+AWS_STORAGE_BUCKET_NAME = env.str('DJANGO_AWS_STORAGE_BUCKET_NAME', default='mis_comidas-production')
 AWS_ACCESS_KEY_ID = env.str('DJANGO_AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = env.str('DJANGO_AWS_SECRET_ACCESS_KEY')

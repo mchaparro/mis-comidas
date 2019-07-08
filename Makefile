@@ -12,7 +12,7 @@ EDITOR ?= nano
 EDIT_SETTINGS ?= yes
 
 # Project name
-PROJECT_NAME ?= ask_taltech_student
+PROJECT_NAME ?= mis_comidas
 
 # Get root dir and project dir
 PROJECT_ROOT ?= $(CURDIR)

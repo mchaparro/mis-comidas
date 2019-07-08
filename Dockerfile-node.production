@@ -8,7 +8,7 @@ WORKDIR /app
 EXPOSE 80
 
 # Create a directory for the logs
-RUN mkdir -p /var/log/ask_taltech_student
+RUN mkdir -p /var/log/mis_comidas
 
 # Mark assets directory as volume
 VOLUME /files/assets

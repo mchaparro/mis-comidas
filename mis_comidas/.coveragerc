@@ -5,7 +5,7 @@ source =
 
 omit =
     */migrations/*
-    ask_taltech_student/wsgi.py
+    mis_comidas/wsgi.py
     manage.py
     fabfile.py
     settings/*

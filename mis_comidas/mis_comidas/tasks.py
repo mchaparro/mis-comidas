@@ -1,6 +1,6 @@
 import logging
 
-from ask_taltech_student.celery import app
+from mis_comidas.celery import app
 
 
 logger = logging.getLogger(__name__)

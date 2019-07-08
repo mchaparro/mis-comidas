@@ -1,11 +1,11 @@
 /* eslint-disable global-require */
 const SETTINGS = {
     API_BASE: '/api/',
-    AUTH_TOKEN_NAME: 'ask_taltech_student_token',
+    AUTH_TOKEN_NAME: 'mis_comidas_token',
     // KEEP `AUTH_TOKEN_LIFETIME` IN SYNC WITH backend ACCESS_TOKEN_LIFETIME
     AUTH_TOKEN_LIFETIME: 30, // This value is in minutes
-    AUTH_REFRESH_TOKEN_NAME: 'ask_taltech_student_refresh_token',
-    LANGUAGE_COOKIE_NAME: 'ask_taltech_student_language',
+    AUTH_REFRESH_TOKEN_NAME: 'mis_comidas_refresh_token',
+    LANGUAGE_COOKIE_NAME: 'mis_comidas_language',
     CSRF_COOKIE_NAME: 'csrftoken',
     DEFAULT_LANGUAGE: 'et',
     LANGUAGE_ORDER: [
@@ -33,7 +33,7 @@ const SETTINGS = {
 if (process.env.BUILD_TARGET === 'server') {
     SETTINGS.CLUSTERED = false;
     SETTINGS.FILE_LOGGING = process.env.RAZZLE_FILE_LOGGING === 'true';
-    SETTINGS.LOGGING_DIR = process.env.RAZZLE_LOGGING_DIR || '/var/log/ask_taltech_student/';
+    SETTINGS.LOGGING_DIR = process.env.RAZZLE_LOGGING_DIR || '/var/log/mis_comidas/';
     SETTINGS.LOGGING_FILE_PREFIX = process.env.RAZZLE_LOGGING_FILE_PREFIX || 'node';
 
     const docker = require('is-docker');

@@ -8,7 +8,7 @@ from django.views.generic.base import RedirectView
 admin.autodiscover()
 
 urlpatterns = [
-    url(r'^api/', include('ask_taltech_student.rest.urls')),
+    url(r'^api/', include('mis_comidas.rest.urls')),
     url(r'^adminpanel/', admin.site.urls),
 ]
 
@@ -16,8 +16,8 @@ urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if not settings.DEBUG:
-    handler500 = 'ask_taltech_student.views.server_error'
-    handler404 = 'ask_taltech_student.views.page_not_found'
+    handler500 = 'mis_comidas.views.server_error'
+    handler404 = 'mis_comidas.views.page_not_found'
 
 if settings.DEBUG:
     try:

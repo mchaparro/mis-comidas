@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
+import { Nav, Navbar, NavItem, NavLink } from 'reactstrap';
 import { resolvePath as urlResolve } from 'tg-named-routes';
 
 import { applicationSelectors } from 'ducks/application';
@@ -50,11 +50,7 @@ const NavigationBar = ({ user, isLoggedIn }) => {
 
     return (
         <Navbar color="navbar-default" light expand="md">
-            <NavbarBrand tag={Link} to={urlResolve('forums')}>Ask a TalTech Student</NavbarBrand>
             <Nav navbar>
-                <NavItem>
-                    <NavLink tag={Link} to={urlResolve('forums')}>{gettext('Forums')}</NavLink>
-                </NavItem>
                 {devUrls}
             </Nav>
             {authNav}

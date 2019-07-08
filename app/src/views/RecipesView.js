@@ -1,24 +1,24 @@
 import React from 'react';
 import { Col, Container, Row } from 'reactstrap';
 import { gettext } from 'utils/i18n';
-import Forums from 'components/Forums/Forums';
+// import Recipes from 'components/Recipes/Recipes';
 // import PropTypes from 'prop-types';
 
-const ForumsView = () => (
+const RecipesView = () => (
     <Container>
         <Row className="mt-3">
             <Col>
                 <h1>
-                    {gettext('Forums')}
+                    {gettext('Recipes')}
                 </h1>
             </Col>
         </Row>
         <Row className="mt-3">
             <Col>
-                <Forums />
+                Hello
             </Col>
         </Row>
     </Container>
 );
 
-export default ForumsView;
+export default RecipesView;

@@ -21,5 +21,5 @@ from django.conf.urls import include, url
 urlpatterns = [
     url(r'^auth/', include('accounts.jwt.urls')),
     url(r'^user/', include('accounts.rest.urls')),
-    url(r'^', include('forums.rest.api_urls')),
+    url(r'^', include('recipes.rest.api_urls')),
 ]

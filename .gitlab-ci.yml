@@ -5,8 +5,8 @@ services:
   - docker:dind
 
 variables:
-  POSTGRES_USER: ask_taltech_student
-  POSTGRES_PASSWORD: ask_taltech_student
+  POSTGRES_USER: mis_comidas
+  POSTGRES_PASSWORD: mis_comidas
   DOCKER_DRIVER: overlay
 
 before_script:

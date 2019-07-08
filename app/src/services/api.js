@@ -64,9 +64,9 @@ const api = createSagaRouter({
         forgotPassword: 'user/forgot_password',
         forgotPasswordToken: 'user/forgot_password/token',
     },
-    forum: {
-        list: 'forums',
-    },
+    // forum: {
+    //     list: 'forums',
+    // },
 }, {
     apiRoot: SETTINGS.BACKEND_SITE_URL + SETTINGS.API_BASE,
 

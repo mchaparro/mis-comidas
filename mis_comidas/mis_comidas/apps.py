@@ -5,8 +5,8 @@ from tg_utils.checks import check_production_settings, check_sentry_config
 
 
 class AskTaltechStudentConfig(AppConfig):
-    name = 'ask_taltech_student'
-    verbose_name = "Ask TalTech Student"
+    name = 'mis_comidas'
+    verbose_name = "Mis Comidas"
 
     def ready(self):
         # Import and register the system checks

@@ -1,4 +1,4 @@
-# Ask TalTech Student
+# Mis Comidas
 
 TODO: verify that the following info is correct:
 
@@ -7,7 +7,7 @@ TODO: verify that the following info is correct:
  - Node:    10.15.1
  - React:   16.8+
 
-Browser support is defined in the `ask_taltech_student/browserslist` file that is used for autoprefixing CSS.
+Browser support is defined in the `mis_comidas/browserslist` file that is used for autoprefixing CSS.
 
 
 ## Setting up development
@@ -97,12 +97,12 @@ Note that the production configuration lacks PostgreSQL, since it runs on a sepa
 |run ESLint                            |`make eslint`                          |`docker-compose run --rm node yarn lint`                                    |
 |run Prospector                        |`make prospector`                      |`docker-compose run --rm django prospector`                                 |
 |run isort                             |`make isort`                           |`docker-compose run --rm django isort --recursive --check-only -p . --diff` |
-|run psql                              |`make psql`                            |`docker-compose exec postgres psql --user ask_taltech_student --dbname ask_taltech_student` |
+|run psql                              |`make psql`                            |`docker-compose exec postgres psql --user mis_comidas --dbname mis_comidas` |
 |generate docs                         |`make docs`                            |`docker-compose run --rm django sphinx-build ./docs ./docs/_build`          |
 
 ## Running commands on the server
 
-    docker-compose -f docker-compose.production.yml run --rm --name ask_taltech_student_tmp django python manage.py <command>
+    docker-compose -f docker-compose.production.yml run --rm --name mis_comidas_tmp django python manage.py <command>
 
 ## Installing new pip or npm packages
 
@@ -243,7 +243,7 @@ There are basically two types of deploys:
 * Add the server's SSH key (`/root/.ssh/id_rsa.pub`) to the project repo as deployment key.
 * Ensure you've committed and pushed all relevant changes.
 * [Create the bucket for media files](http://docs.aws.amazon.com/AmazonS3/latest/UG/CreatingaBucket.html):
-  * Bucket name: ask_taltech_student-{ENV} where `ENV` is either `staging` or `production`.
+  * Bucket name: mis_comidas-{ENV} where `ENV` is either `staging` or `production`.
   * Region: Closest to the users of the project.
     * Don't forget to change `AWS_S3_REGION_NAME` to the correct one
   * Public access settings:

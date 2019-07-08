@@ -10,7 +10,7 @@ services:
         ports:
             - "3000:80"
         volumes:
-            - "./ask_taltech_student:/app"
+            - "./mis_comidas:/app"
             - ".data/media:/files/media"
         environment:
             - PYTHONUNBUFFERED=0
@@ -44,15 +44,15 @@ services:
         volumes:
             - ".data/postgres:/var/lib/postgresql/data"
         environment:
-            POSTGRES_USER: ask_taltech_student
-            POSTGRES_PASSWORD: ask_taltech_student
+            POSTGRES_USER: mis_comidas
+            POSTGRES_PASSWORD: mis_comidas
 
     celery:
         build:
             context: .
             dockerfile: Dockerfile-django
         volumes:
-            - "./ask_taltech_student:/app"
+            - "./mis_comidas:/app"
             - ".data/media:/files/media"
         depends_on:
             - postgres
@@ -60,22 +60,22 @@ services:
         environment:
             - PYTHONUNBUFFERED=0
         entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
-        command: celery worker --app ask_taltech_student --autoscale 6,2 --loglevel INFO
+        command: celery worker --app mis_comidas --autoscale 6,2 --loglevel INFO
 
     celery_beat:
         build:
             context: .
             dockerfile: Dockerfile-django
-        container_name: ask_taltech_student_celery_beat
+        container_name: mis_comidas_celery_beat
         volumes:
-            - "./ask_taltech_student:/app"
+            - "./mis_comidas:/app"
             - ".data/celery:/celery"
         depends_on:
             - redis
         # Disable pidfile by specifying an empty one. We used fixed container_name which provides single-running-process
         #  guarantee and the lack of pidfile ensures that Celery Beat starts even if the Docker container was killed and
         #  then restarted (in which case the pidfile would still be present).
-        command: celery beat --app ask_taltech_student --loglevel INFO --pidfile= --schedule /celery/celerybeat-schedule
+        command: celery beat --app mis_comidas --loglevel INFO --pidfile= --schedule /celery/celerybeat-schedule
 
     redis:
         image: redis:4.0.10-alpine

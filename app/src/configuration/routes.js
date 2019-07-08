@@ -8,14 +8,14 @@ import App from 'containers/AppShell';
 import PageNotFound from 'views/PageNotFound';
 
 import permissionCheck from 'sagas/auth/permissionCheckSaga';
-import { fetchForumsInitialWorker, fetchForumWatcher } from 'sagas/forums/fetchForums';
+// import { fetchForumsInitialWorker, fetchForumWatcher } from 'sagas/forums/fetchForums';
 import activateLanguage from 'sagas/user/activateLanguage';
 import fetchUserDetails from 'sagas/user/fetchUserDetails';
 
 import { createAuthenticationRoutes } from './routes/authentication';
 
 // const Home = loadable(() => import('views/Home'));
-const ForumsView = loadable(() => import('views/ForumsView'));
+const RecipesView = loadable(() => import('views/RecipesView'));
 const RestrictedView = loadable(() => import('views/RestrictedView'));
 
 
@@ -39,7 +39,7 @@ const routes = [
                 path: '/',
                 exact: true,
                 name: 'landing',
-                component: () => (<ConnectedRedirect to={resolvePath('forums')} />),
+                component: () => (<ConnectedRedirect to={resolvePath('recipes')} />),
             },
             {
                 path: '/restricted',
@@ -49,12 +49,10 @@ const routes = [
                 initial: permissionCheck,
             },
             {
-                path: '/forums',
+                path: '/recipes',
                 exact: true,
-                name: 'forums',
-                component: ForumsView,
-                initial: fetchForumsInitialWorker,
-                watcher: fetchForumWatcher,
+                name: 'recipes',
+                component: RecipesView,
             },
             createAuthenticationRoutes(NotFoundRoute),
             NotFoundRoute,

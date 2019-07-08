@@ -7,19 +7,19 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-django.production
-        container_name: ask_taltech_student_django
+        container_name: mis_comidas_django
         restart: unless-stopped
         volumes:
-            - "/var/lib/docker-nginx/files/ask_taltech_student/assets:/files/assets"
-            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+            - "/var/lib/docker-nginx/files/mis_comidas/assets:/files/assets"
+            - "/var/log/mis_comidas:/var/log/mis_comidas"
         # For some reason the command also has to be specified here, otherwise the entrypoint+command combination won't
         #  work.
         entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
-        command: gunicorn ask_taltech_student.wsgi:application --workers 2 --bind :80
+        command: gunicorn mis_comidas.wsgi:application --workers 2 --bind :80
         networks:
             - default
-            - ask_taltech_student_nginx
-            - ask_taltech_student_postgres
+            - mis_comidas_nginx
+            - mis_comidas_postgres
         depends_on:
             - redis
         external_links:
@@ -29,15 +29,15 @@ services:
         build:
             context: .
             dockerfile: Dockerfile-node.production
-        container_name: ask_taltech_student_node
+        container_name: mis_comidas_node
         restart: unless-stopped
         command: yarn start
         volumes:
-            - "/var/lib/docker-nginx/files/ask_taltech_student/app/assets:/files/assets"
-            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+            - "/var/lib/docker-nginx/files/mis_comidas/app/assets:/files/assets"
+            - "/var/log/mis_comidas:/var/log/mis_comidas"
         networks:
             - default
-            - ask_taltech_student_nginx
+            - mis_comidas_nginx
 
     celery:
         build:
@@ -45,27 +45,27 @@ services:
             dockerfile: Dockerfile-django.production
         restart: unless-stopped
         volumes:
-            - "/var/lib/docker-nginx/files/ask_taltech_student/media:/files/media"
-            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+            - "/var/lib/docker-nginx/files/mis_comidas/media:/files/media"
+            - "/var/log/mis_comidas:/var/log/mis_comidas"
         networks:
             - default
-            - ask_taltech_student_postgres
+            - mis_comidas_postgres
         depends_on:
             - redis
         external_links:
             - postgres-10:postgres
         entrypoint: /usr/bin/wait-for-it.sh postgres:5432 -t 60 --
-        command: celery worker --app ask_taltech_student --autoscale 6,2 --loglevel INFO
+        command: celery worker --app mis_comidas --autoscale 6,2 --loglevel INFO
 
     celery_beat:
         build:
             context: .
             dockerfile: Dockerfile-django.production
-        container_name: ask_taltech_student_celery_beat
+        container_name: mis_comidas_celery_beat
         restart: unless-stopped
         volumes:
-            - "/var/lib/docker-ask_taltech_student/celery:/celery"
-            - "/var/log/ask_taltech_student:/var/log/ask_taltech_student"
+            - "/var/lib/docker-mis_comidas/celery:/celery"
+            - "/var/log/mis_comidas:/var/log/mis_comidas"
         networks:
             - default
         depends_on:
@@ -73,13 +73,13 @@ services:
         # Disable pidfile by specifying an empty one. We used fixed container_name which provides single-running-process
         #  guarantee and the lack of pidfile ensures that Celery Beat starts even if the Docker container was killed and
         #  then restarted (in which case the pidfile would still be present).
-        command: celery beat --app ask_taltech_student --loglevel INFO --logfile /var/log/ask_taltech_student/celery-beat.log --pidfile= --schedule /celery/celerybeat-schedule
+        command: celery beat --app mis_comidas --loglevel INFO --logfile /var/log/mis_comidas/celery-beat.log --pidfile= --schedule /celery/celerybeat-schedule
 
     redis:
         image: redis:4.0.10-alpine
         restart: unless-stopped
         volumes:
-            - "/var/lib/docker-ask_taltech_student/redis:/data"
+            - "/var/lib/docker-mis_comidas/redis:/data"
         networks:
             - default
 
@@ -88,8 +88,8 @@ services:
 networks:
     default:
         external:
-            name: ask_taltech_student_default
-    ask_taltech_student_nginx:
+            name: mis_comidas_default
+    mis_comidas_nginx:
         external: true
-    ask_taltech_student_postgres:
+    mis_comidas_postgres:
         external: true

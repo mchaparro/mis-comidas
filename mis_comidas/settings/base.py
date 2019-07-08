@@ -39,7 +39,7 @@ ADMINS = (
 MANAGERS = ADMINS
 EMAIL_SUBJECT_PREFIX = '[Ask TalTech Student] '  # subject prefix for managers & admins
 
-SESSION_COOKIE_NAME = 'ask_taltech_student_ssid'
+SESSION_COOKIE_NAME = 'mis_comidas_ssid'
 SESSION_COOKIE_DOMAIN = env.str('DJANGO_SESSION_COOKIE_DOMAIN', default=None)
 
 CSRF_COOKIE_DOMAIN = env.str('DJANGO_CSRF_COOKIE_DOMAIN', default=None)
@@ -49,9 +49,8 @@ CSRF_COOKIE_HTTPONLY = False
 INSTALLED_APPS = [
     # Local apps
     'accounts',
-    'ask_taltech_student',
-    'forums',
-    'threads',
+    'mis_comidas',
+    'recipes',
 
     # Third-party apps
     'rest_framework',
@@ -111,9 +110,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'HOST': env.str('DJANGO_DATABASE_HOST', default='postgres'),
         'PORT': env.int('DJANGO_DATABASE_PORT', default=5432),
-        'NAME': env.str('DJANGO_DATABASE_NAME', default='ask_taltech_student'),
-        'USER': env.str('DJANGO_DATABASE_USER', default='ask_taltech_student'),
-        'PASSWORD': env.str('DJANGO_DATABASE_PASSWORD', default='ask_taltech_student'),
+        'NAME': env.str('DJANGO_DATABASE_NAME', default='mis_comidas'),
+        'USER': env.str('DJANGO_DATABASE_USER', default='mis_comidas'),
+        'PASSWORD': env.str('DJANGO_DATABASE_PASSWORD', default='mis_comidas'),
     }
 }
 
@@ -137,7 +136,7 @@ CELERY_TIMEZONE = 'UTC'
 CELERYBEAT_SCHEDULE = {
     'default-task': {
         # TODO: Remove the default task after confirming that Celery works.
-        'task': 'ask_taltech_student.tasks.default_task',
+        'task': 'mis_comidas.tasks.default_task',
         'schedule': 5,
     },
 }
@@ -224,9 +223,9 @@ CORS_ORIGIN_WHITELIST = [
 X_FRAME_OPTIONS = 'DENY'
 
 
-ROOT_URLCONF = 'ask_taltech_student.urls'
+ROOT_URLCONF = 'mis_comidas.urls'
 
-WSGI_APPLICATION = 'ask_taltech_student.wsgi.application'
+WSGI_APPLICATION = 'mis_comidas.wsgi.application'
 
 
 LOGIN_REDIRECT_URL = '/'

@@ -2,8 +2,8 @@ from settings.test import *
 
 
 DATABASES['default']['HOST'] = 'postgres'
-DATABASES['default']['USER'] = 'ask_taltech_student'
-DATABASES['default']['PASSWORD'] = 'ask_taltech_student'
+DATABASES['default']['USER'] = 'mis_comidas'
+DATABASES['default']['PASSWORD'] = 'mis_comidas'
 
 CACHES['default']['LOCATION'] = "redis://redis:6379/1"
 
@@ -13,7 +13,7 @@ CACHES['default']['LOCATION'] = "redis://redis:6379/1"
 # import socket  # noqa
 # if socket.gethostname() == 'YOUR_MACHINE_NAME':
 #     DATABASES['default']['HOST'] = 'localhost'
-#     DATABASES['default']['USER'] = 'ask_taltech_student'
-#     DATABASES['default']['PASSWORD'] = 'ask_taltech_student'
+#     DATABASES['default']['USER'] = 'mis_comidas'
+#     DATABASES['default']['PASSWORD'] = 'mis_comidas'
 #
 #     CACHES['default']['LOCATION'] = "redis://localhost:6379/1"

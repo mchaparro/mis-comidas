@@ -1,6 +1,6 @@
 # configure logging
-access_log /var/log/nginx/ask_taltech_student.access.log extended;
-error_log /var/log/nginx/ask_taltech_student.error.log;
+access_log /var/log/nginx/mis_comidas.access.log extended;
+error_log /var/log/nginx/mis_comidas.error.log;
 
 # Don't send the nginx version number in error pages and server header
 server_tokens off;

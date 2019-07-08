@@ -1,6 +1,6 @@
-include conf.d/app.ask_taltech_student.include;
+include conf.d/app.mis_comidas.include;
 include conf.d/ssl-common.include;
-include conf.d/ssl.ask_taltech_student.include;
+include conf.d/ssl.mis_comidas.include;
 
 # 502 error page (portrayed as 503)
 error_page 502 =503 /502.html;
@@ -30,5 +30,5 @@ location = /robots.txt {
 }
 
 location / {
-    include conf.d/app.ask_taltech_student.proxy_node.include;
+    include conf.d/app.mis_comidas.proxy_node.include;
 }

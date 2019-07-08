@@ -28,9 +28,9 @@ django.setup()
 
 # -- Project information -----------------------------------------------------
 
-project = 'ask_taltech_student'
-copyright = '2018, ask_taltech_student'
-author = 'ask_taltech_student'
+project = 'mis_comidas'
+copyright = '2018, mis_comidas'
+author = 'mis_comidas'
 
 # The short X.Y version
 version = ''
@@ -121,7 +121,7 @@ html_show_sphinx = False
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ask_taltech_studentdoc'
+htmlhelp_basename = 'mis_comidasdoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -148,8 +148,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ask_taltech_student.tex', 'ask_taltech_student Documentation',
-     'ask_taltech_student', 'manual'),
+    (master_doc, 'mis_comidas.tex', 'mis_comidas Documentation',
+     'mis_comidas', 'manual'),
 ]
 
 
@@ -158,7 +158,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ask_taltech_student', 'ask_taltech_student Documentation',
+    (master_doc, 'mis_comidas', 'mis_comidas Documentation',
      [author], 1)
 ]
 
@@ -169,8 +169,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ask_taltech_student', 'ask_taltech_student Documentation',
-     author, 'ask_taltech_student', 'One line description of project.',
+    (master_doc, 'mis_comidas', 'mis_comidas Documentation',
+     author, 'mis_comidas', 'One line description of project.',
      'Miscellaneous'),
 ]
 

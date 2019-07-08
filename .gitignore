@@ -12,23 +12,23 @@ venv/
 
 .data/
 
-ask_taltech_student/django.env
-ask_taltech_student/settings/local.py
-ask_taltech_student/settings/local_test.py
-ask_taltech_student/db.sqlite3
-ask_taltech_student/assets/
+mis_comidas/django.env
+mis_comidas/settings/local.py
+mis_comidas/settings/local_test.py
+mis_comidas/db.sqlite3
+mis_comidas/assets/
 
-ask_taltech_student/.cache
-ask_taltech_student/.pytest_cache
-ask_taltech_student/.coverage
-ask_taltech_student/coverage
-ask_taltech_student/cover/
+mis_comidas/.cache
+mis_comidas/.pytest_cache
+mis_comidas/.coverage
+mis_comidas/coverage
+mis_comidas/cover/
 
 # Node Project files
 app/build/
 app/coverage/
 
 # Django env
-ask_taltech_student/django.env
+mis_comidas/django.env
 
-ask_taltech_student/docs/_build
+mis_comidas/docs/_build

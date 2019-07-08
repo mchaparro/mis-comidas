@@ -9,8 +9,8 @@ venv/
 *.pyo
 *.pyc
 
-ask_taltech_student/.cache
-ask_taltech_student/.pytest_cache
-ask_taltech_student/.coverage
-ask_taltech_student/coverage
-ask_taltech_student/cover/
+mis_comidas/.cache
+mis_comidas/.pytest_cache
+mis_comidas/.coverage
+mis_comidas/coverage
+mis_comidas/cover/

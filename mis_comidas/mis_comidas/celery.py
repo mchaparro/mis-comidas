@@ -8,7 +8,7 @@ from celery import Celery
 # Set the default Django settings module
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.local')
 
-app = Celery('ask_taltech_student')
+app = Celery('mis_comidas')
 
 # Using a string here means the worker don't have to serialize the configuration object to child processes.
 app.config_from_object('django.conf:settings')

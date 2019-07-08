@@ -4,17 +4,17 @@ import PropTypes from 'prop-types';
 
 import { selectForums } from 'ducks/forums';
 import { ForumShape } from 'utils/types/forums';
-import Forum from 'components/Forums/Forum';
+import Recipe from 'components/Recipes/Recipe';
 
-const Forums = ({ forums }) => (
+const Recipes = ({ forums }) => (
     <div>
         {forums.map((forum) => (
-            <Forum forum={forum} />
+            <Recipe forum={forum} />
         ))}
     </div>
 );
 
-Forums.propTypes = {
+Recipes.propTypes = {
     forums: PropTypes.arrayOf(ForumShape).isRequired,
 };
 
@@ -22,4 +22,4 @@ const mapStateToProps = (state) => ({
     forums: selectForums(state),
 });
 
-export default connect(mapStateToProps)(Forums);
+export default connect(mapStateToProps)(Recipes);

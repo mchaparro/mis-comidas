@@ -44,8 +44,8 @@ ${site_settings}
 ${prefix}_ALLOWED_HOSTS=${allowed_hosts}
 ${prefix}_DATABASE_HOST=postgres
 ${prefix}_DATABASE_PORT=5432
-${prefix}_DATABASE_NAME=ask_taltech_student
-${prefix}_DATABASE_USER=ask_taltech_student
+${prefix}_DATABASE_NAME=mis_comidas
+${prefix}_DATABASE_USER=mis_comidas
 ${prefix}_DATABASE_PASSWORD=${db_password}
 """
 
@@ -64,7 +64,7 @@ def defaults():
 
     env.target = 'staging'
 
-    env.code_dir = '/srv/ask_taltech_student'
+    env.code_dir = '/srv/mis_comidas'
 
     env.postgres_version = '10'
 
@@ -83,50 +83,50 @@ def defaults():
         "letsencrypt": [
             {
                 "pattern": "%(target)s.conf",
-                "filename": "letsencrypt.ask_taltech_student.conf",
+                "filename": "letsencrypt.mis_comidas.conf",
                 "remote_path": "/etc/letsencrypt/configs/%(filename)s"
             }
         ],
         "nginx": [
             {
                 "pattern": "common.include",
-                "filename": "app.ask_taltech_student.include",
+                "filename": "app.mis_comidas.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
-                "pattern": "common.ask_taltech_student.node.include",
-                "filename": "common.ask_taltech_student.node.include",
+                "pattern": "common.mis_comidas.node.include",
+                "filename": "common.mis_comidas.node.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
-                "pattern": "common.ask_taltech_student.django.include",
-                "filename": "common.ask_taltech_student.django.include",
+                "pattern": "common.mis_comidas.django.include",
+                "filename": "common.mis_comidas.django.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
-                "pattern": "app.ask_taltech_student.proxy_django.include",
-                "filename": "app.ask_taltech_student.proxy_django.include",
+                "pattern": "app.mis_comidas.proxy_django.include",
+                "filename": "app.mis_comidas.proxy_django.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
-                "pattern": "app.ask_taltech_student.proxy_node.include",
-                "filename": "app.ask_taltech_student.proxy_node.include",
+                "pattern": "app.mis_comidas.proxy_node.include",
+                "filename": "app.mis_comidas.proxy_node.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
-                "pattern": "app.ask_taltech_student.proxy.include",
-                "filename": "app.ask_taltech_student.proxy.include",
+                "pattern": "app.mis_comidas.proxy.include",
+                "filename": "app.mis_comidas.proxy.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
                 "pattern": "%(target)s.ssl",
-                "filename": "ssl.ask_taltech_student.include",
+                "filename": "ssl.mis_comidas.include",
                 "remote_path": "/etc/nginx/conf.d/%(filename)s"
             },
             {
                 "default_site": True,
                 "pattern": "%(target)s.conf",
-                "filename": "ask_taltech_student",
+                "filename": "mis_comidas",
                 "remote_path": "/etc/nginx/sites-enabled/%(filename)s"
             }
         ]
@@ -356,7 +356,7 @@ def setup_server(id=None):
 
     # Upload local settings / env files
     node_settings_file = env.code_dir + '/app/.env.production.local'
-    django_settings_file = env.code_dir + '/ask_taltech_student/django.env'
+    django_settings_file = env.code_dir + '/mis_comidas/django.env'
 
     put(local_path=StringIO(node_site_settings), remote_path=node_settings_file, use_sudo=True)
     put(local_path=StringIO(django_local_settings), remote_path=django_settings_file, use_sudo=True)
@@ -383,13 +383,13 @@ def setup_server(id=None):
     add_secret_key('DJANGO_AWS_SECRET_ACCESS_KEY', [django_settings_file])
 
     # Create database
-    sudo('echo "CREATE DATABASE ask_taltech_student; '
-         '      CREATE USER ask_taltech_student WITH password \'{db_password}\'; '
-         '      GRANT ALL PRIVILEGES ON DATABASE ask_taltech_student to ask_taltech_student;" '
+    sudo('echo "CREATE DATABASE mis_comidas; '
+         '      CREATE USER mis_comidas WITH password \'{db_password}\'; '
+         '      GRANT ALL PRIVILEGES ON DATABASE mis_comidas to mis_comidas;" '
          '| docker exec -i postgres-{postgres_version} psql -U postgres'.format(db_password=db_password,
                                                                                 postgres_version=env.postgres_version))
     # Create log dir
-    sudo('mkdir -p /var/log/ask_taltech_student/')
+    sudo('mkdir -p /var/log/mis_comidas/')
 
     ensure_docker_networks()
 
@@ -401,7 +401,7 @@ def setup_server(id=None):
 
     # Copy logrotate conf
     with cd(env.code_dir):
-        sudo('cp deploy/logrotate.conf /etc/logrotate.d/ask_taltech_student')
+        sudo('cp deploy/logrotate.conf /etc/logrotate.d/mis_comidas')
 
     # (Re)start services
     docker_up(silent=True)
@@ -587,7 +587,7 @@ def add_secret_keys(component=None):
     if component == 'node':
         remote_path = env.code_dir + '/app/.env.production.local'
     else:
-        remote_path = env.code_dir + '/ask_taltech_student/django.env'
+        remote_path = env.code_dir + '/mis_comidas/django.env'
 
     while True:
         # Get key name
@@ -630,7 +630,7 @@ def repo_type():
 
 
 def collectstatic():
-    docker_compose_run('node', 'yarn export-assets', name='ask_taltech_student_yarn_export')
+    docker_compose_run('node', 'yarn export-assets', name='mis_comidas_yarn_export')
     management_cmd('collectstatic --noinput --ignore styles-src')
 
 
@@ -658,7 +658,7 @@ def docker_compose(cmd):
         sudo('docker-compose -f docker-compose.production.yml ' + cmd)
 
 
-def docker_compose_run(service, cmd='', name='ask_taltech_student_tmp'):
+def docker_compose_run(service, cmd='', name='mis_comidas_tmp'):
     docker_compose('run --rm --name {name} {service} {cmd}'.format(name=name, service=service, cmd=cmd))
 
 
@@ -725,9 +725,9 @@ def get_nginx_app_target_path():
 
 def ensure_docker_networks():
     # Ensure we have dedicated networks for communicating with Nginx and Postgres
-    ensure_docker_network_exists('ask_taltech_student_default', [], internal=False)
-    ensure_docker_network_exists('ask_taltech_student_nginx', ['nginx'])
-    ensure_docker_network_exists('ask_taltech_student_postgres', ['postgres-{postgres_version}'.format(
+    ensure_docker_network_exists('mis_comidas_default', [], internal=False)
+    ensure_docker_network_exists('mis_comidas_nginx', ['nginx'])
+    ensure_docker_network_exists('mis_comidas_postgres', ['postgres-{postgres_version}'.format(
         postgres_version=env.postgres_version)])
 
 
@@ -746,7 +746,7 @@ def ensure_local_py_exists():
     require('hosts')
     require('code_dir')
 
-    django_local_settings = env.code_dir + '/ask_taltech_student/settings/local.py'
+    django_local_settings = env.code_dir + '/mis_comidas/settings/local.py'
 
     if not exists(django_local_settings, use_sudo=True):
         content = string.Template("from settings.${target} import *\n").substitute(target=env.target)

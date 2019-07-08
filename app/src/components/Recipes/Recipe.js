@@ -1,7 +1,7 @@
 import React from 'react';
 import { ForumShape } from 'utils/types/forums';
 
-const Forum = ({ forum }) => (
+const Recipe = ({ forum }) => (
     <div className="forum">
         <span className="forum__title">
             {forum.title}
@@ -9,8 +9,8 @@ const Forum = ({ forum }) => (
     </div>
 );
 
-Forum.propTypes = {
+Recipe.propTypes = {
     forum: ForumShape.isRequired,
 };
 
-export default Forum;
+export default Recipe;

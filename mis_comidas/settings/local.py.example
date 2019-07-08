@@ -33,9 +33,9 @@ from settings.base import *
 #         'default': {
 #             'ENGINE': 'django.db.backends.postgresql_psycopg2',
 #             'HOST': 'localhost',
-#             'NAME': 'ask_taltech_student',
-#             'USER': 'ask_taltech_student',
-#             'PASSWORD': 'ask_taltech_student',
+#             'NAME': 'mis_comidas',
+#             'USER': 'mis_comidas',
+#             'PASSWORD': 'mis_comidas',
 #         }
 #     }
 #

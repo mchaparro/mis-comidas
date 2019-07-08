@@ -1,2 +1,2 @@
-include conf.d/app.ask_taltech_student.proxy.include;
-proxy_pass http://ask_taltech_student_node;
+include conf.d/app.mis_comidas.proxy.include;
+proxy_pass http://mis_comidas_node;

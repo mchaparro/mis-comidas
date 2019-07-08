@@ -5,7 +5,7 @@ FROM python:3.6-alpine3.8 as base
 ENV DJANGO_PRODUCTION_MODE 1
 
 # Create a directory for the logs
-RUN mkdir -p /var/log/ask_taltech_student
+RUN mkdir -p /var/log/mis_comidas
 
 COPY ./wait-for-it.sh /usr/bin/
 
@@ -49,7 +49,7 @@ RUN find /usr/local \
 RUN apk del .build-deps
 
 # Copy code
-COPY ./ask_taltech_student /app
+COPY ./mis_comidas /app
 
 # Set the default directory where CMD will execute
 WORKDIR /app
@@ -59,4 +59,4 @@ WORKDIR /app
 #RUN python manage.py compilemessages
 
 # Run Gunicorn by default
-CMD gunicorn ask_taltech_student.wsgi:application --workers 2 --bind :80
+CMD gunicorn mis_comidas.wsgi:application --workers 2 --bind :80
