@@ -7,7 +7,7 @@ name = "pypi"
 boto3 = "==1.9.*"
 celery = {version = "==4.2.*", extras = ["redis"]}
 Django = "==1.11.*"
-djangorestframework = "==3.9.*"
+djangorestframework = "==3.11.*"
 django-filter = "==2.1.*"
 djangorestframework_simplejwt = "==4.3.*"
 django-crispy-forms = "==1.7.*"
